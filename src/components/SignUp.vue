@@ -4,7 +4,7 @@ import { useRouter, RouterLink } from 'vue-router'
 import { signup } from '../services/authServices'
 
 // Props (for showToast)
-defineProps({
+const props = defineProps({
   showToast: Function
 })
 
@@ -73,7 +73,7 @@ const handleSubmit = async (e) => {
 
   try {
     await signup(formData.value.name, formData.value.email, formData.value.password)
-    showToast?.('Account created successfully! Welcome to TicketFlow.', 'success')
+    props.showToast?.('Account created successfully! Welcome to TicketFlow.', 'success')
     router.push('/dashboard')
   } catch (error) {
     showToast?.(error.message, 'error')
